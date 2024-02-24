@@ -1,0 +1,313 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Satzz - Api's</title>
+
+	<!-- Bootstrap CSS-->
+	<link rel="stylesheet" href="assets/modules/bootstrap-5.1.3/css/bootstrap.css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<!-- FontAwesome CSS-->
+	<link rel="stylesheet" href="assets/modules/fontawesome6.1.1/css/all.css">
+	<!-- Boxicons CSS-->
+	<link rel="stylesheet" href="assets/modules/boxicons/css/boxicons.min.css">
+	<!-- Apexcharts  CSS -->
+	<link rel="stylesheet" href="assets/modules/apexcharts/apexcharts.css">
+		<link rel="icon" href="assets/images/logos.png" type="image/png">
+		<meta name="description" content="Satzz - Api's for whatsapp bot">
+		<meta name="author" content="SatganzDevs">
+		<meta property="og:image" content="assets/image/brand.jpeg">
+</head>
+<body>
+  
+  <!--Topbar -->
+  <div class="topbar transition">
+	<div class="bars">
+		<button type="button" class="btn transition" id="sidebar-toggle">
+			<i class="fa fa-bars"></i>
+		</button>
+	</div>
+		<div class="menu">
+			<ul>
+				<li class="nav-item dropdown dropdown-list-toggle">
+					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					   <i class="fa fa-bell size-icon-1"></i><span class="badge bg-danger notif">4</span>
+					</a> 				 
+					<div class="dropdown-menu dropdown-list">
+						<div class="dropdown-header">Notifications</div>
+						<div class="dropdown-list-content dropdown-list-icons">
+							<div class="custome-list-notif"> 
+							<a href="#" class="dropdown-item dropdown-item-unread">
+								<div class="dropdown-item-icon bg-primary text-white">
+								  <i class="fas fa-code"></i>
+								</div>
+								<div class="dropdown-item-desc">
+									The Satzz Api's has the latest update!
+								  <div class="time text-primary">3 Min Ago</div>
+								</div>
+							  </a>
+
+							  <a href="#" class="dropdown-item">
+								<div class="dropdown-item-icon bg-info text-white">
+								  <i class="far fa-user"></i>
+								</div>
+								<div class="dropdown-item-desc">
+								   Sri asks you for friendship!
+								  <div class="time">12 Hours Ago</div>
+								</div>
+							  </a>
+
+							  <a href="#" class="dropdown-item">
+								<div class="dropdown-item-icon bg-danger text-white">
+								  <i class="fas fa-check"></i>
+								</div>
+								<div class="dropdown-item-desc">
+									Storage has been cleared, now you can get back to work!
+								  <div class="time">20 Hours Ago</div>
+								</div>
+							  </a>
+
+						  
+							  <a href="#" class="dropdown-item">
+								<div class="dropdown-item-icon bg-info text-white">
+								  <i class="fas fa-bell"></i>
+								</div>
+								<div class="dropdown-item-desc">
+								    Welcome to Satzz Api's, I hope you enjoy using this api's!
+								  <div class="time">Yesterday</div>
+								</div>
+							  </a>
+ 
+							</div>
+						</div>
+
+						<div class="dropdown-footer text-center">
+						  <a href="#">View All</a>
+						</div>
+
+					  
+				  </li>
+			 
+				  <li class="nav-item dropdown">
+					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  <img src="assets/images/avatar/avatar-1.png" alt="">
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="my-profile.html"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
+						<a class="dropdown-item" href="settings.html"><i class="fa fa-cog size-icon-1"></i> <span>Settings</span></a>
+						<hr class="dropdown-divider">
+						<a class="dropdown-item" href="#"><i class="fa fa-sign-out-alt  size-icon-1"></i> <span>My Profile</span></a>
+					</ul>
+				  </li>
+			</ul>
+		</div>
+	</div>
+
+	<!--Sidebar-->
+	<div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
+        <div class="sidebar-content"> 
+        	<div id="sidebar">
+			
+			<!-- Logo -->
+			<div class="logo">
+					<h2 class="mb-0"><img src="assets/images/logos.png"> Satzz</h2>
+			</div>
+
+            <ul class="side-menu">
+                <li>
+					<a href="/" class="active">
+						<i class='bx bxs-dashboard icon' ></i> Dashboard
+					</a>
+				</li>
+
+				<!-- Divider-->
+                <li class="divider" data-text="FEATURES">FEATURES</li>
+
+							<li>
+								<a href="#">
+							<i class='bx bxs-downvote icon' ></i> 
+							Downloader 
+							<i class='bx bx-chevron-right icon-right' ></i>
+							</a>
+								<ul class="side-dropdown">
+										<li><a href="/api/tiktok?apikey=YOUR_API_KEY&url=">Tiktok</a></li>
+							<li><a href="/api/snapsave?apikey=YOUR_API_KEY&url=">Snapsave</a></li>
+										<li><a href="/api/xnxxdl?apikey=YOUR_API_KEY&url=">xnxx</a></li>
+										<li><a href="/api/pindl?apikey=YOUR_API_KEY&url=">pinterestdl</a></li>
+									<li><a href="/api/scdl?apikey=YOUR_API_KEY&url=">souncloud</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="#">
+							<i class='bx bxs-chip icon' ></i> 
+							Random
+							<i class='bx bx-chevron-right icon-right' ></i>
+							</a>
+								<ul class="side-dropdown">
+										<li><a href="/api/random/meme?apikey=YOUR_API_KEY">Random Meme</a></li>
+										<li><a href="/api/darkjokes?apikey=YOUR_API_KEY">Dark Jokes</a></li>
+										<li><a href="/api//random/sound?apikey=YOUR_API_KEY">Random Sound</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="#">
+							<i class='bx bxs-wrench icon' ></i> 
+							Tool 
+							<i class='bx bx-chevron-right icon-right' ></i>
+							</a>
+								<ul class="side-dropdown">
+										<li><a href="/api/lirik?judul=take that patient&apikey=YOUR_API_KEY">Lyric Search</a></li>
+										<li><a href="/api/tool/greetingcard?apikey=YOUR_API_KEY&name=Satganz&avatar=https://i.pinimg.com/originals/45/36/9f/45369f3712b6e9a3a72c3b9b33b8f054.jpg&background=https://i.pinimg.com/originals/28/36/ef/2836efe516eb35bcd9b959855e1a1dd9.jpg">Welcome & Leave Image</a></li>
+										<li><a href="/api/remini">Remini</a></li>
+									<li><a href="/api/translate?apikey=YOUR_API_KEY&text=i miss you&lang=id">Translate</a></li>
+								</ul>
+							</li>
+
+
+				<!-- Divider-->
+				<li class="divider" data-text="Pages">About</li>
+
+
+				<li>
+					<a href="https://portfolio.satganzdevs.tech"><i class='bx bxs-user icon' ></i> 
+						About Me
+					</a>
+				</li>
+
+            </ul>
+
+            <div class="ads">
+              <div class="wrapper">
+                <div class="help-icon"><i class="fa fa-question fa-3x"></i></div>
+                <p>Need Help with <strong>Satzz Api's</strong>?</p>
+                          <a href="https://wa.me/6281316701742" class="btn-upgrade">Contact Me</a>
+                       </div>
+                  </div>
+        </div>
+
+       </div> 
+	 </div>
+	</div><!-- End Sidebar-->
+
+
+	<div class="sidebar-overlay"></div>
+
+
+	<!--Content Start-->
+	<div class="content-start transition">
+		<div class="container-fluid dashboard">
+			<div class="content-header">
+				<h1>Dashboard</h1>
+				<p></p>
+			</div>
+			
+      <div class="row">
+        <div class="card h-50 mb-4">
+          <div class="card-content">
+            <div class="card-body cursor-hover">
+              <div class="col mr-2 cursor-hover">
+              <h4 class="card-title cursor-hover">🚀README</h4>
+                <div class="card-body mb-3 cursor-hover">
+									<p class="card-text">
+											1. Mohon untuk tidak spam API<br>
+											2. Jika ingin request APIkey, hubungi saya<br>
+											3. Semua fitur yang ada di sini gratis dan dapat digunakan tanpa batasan permintaan<br>
+											4. REST API sewaktu-waktu akan dalam perawatan<br>
+											5. Jika APIkeys invalid, hubungi saya<br>
+											Terima kasih
+									</p>
+
+            </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <span>Card Footer</span>
+            <a href="https://wa.me/6281316701742">
+            <button class="btn btn-light-primary">Start</button></a>
+          </div>
+        </div>
+      </div>
+        
+				
+
+		   </div>
+		</div>
+
+
+	<!-- Footer -->				
+	<footer>
+		<div class="footer">
+			<div class="float-start">
+				<p>2024 &copy; Satzz Api's</p>
+			</div>
+				<div class="float-end">
+					<p>Crafted with 
+						<span class="text-danger">
+							<i class="fa fa-heart"></i> by 
+							<a href="https://www.facebook.com/andreew.co.id/" class="author-footer">Kurniawan Satria</a>
+						</span> 
+					</p>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- Preloader -->
+	<div class="loader">
+		<div class="spinner-border text-light" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+	
+	<!-- Loader -->
+	<div class="loader-overlay"></div>
+
+	<!-- General JS Scripts -->
+	<script src="assets/js/atrana.js"></script>
+
+	<!-- JS Libraies -->
+	<script src="assets/modules/jquery/jquery.min.js"></script>
+	<script src="assets/modules/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/modules/popper/popper.min.js"></script>
+
+
+    <!-- Template JS File -->
+	<script src="assets/js/script.js"></script>
+	<script src="assets/js/custom.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+
+			document.addEventListener("DOMContentLoaded", async function() {
+					Swal.fire({
+							title: 'Website Loaded!',
+							icon: 'success',
+							confirmButtonText: 'OK'
+					}).then(async(result) => {
+							if (result.isConfirmed) {
+									var elem = document.documentElement;
+									var requestFullScreen = elem.requestFullscreen || elem.mozRequestFullScreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen;
+									if (requestFullScreen) {
+											requestFullScreen.call(elem);
+									}
+									var audio = new Audio('assets/audio/Take That - Patient.mp3'); // Gantilah dengan path ke file audio Anda
+									await audio.play();
+
+									// Event listener untuk memulai ulang audio saat selesai diputar
+									audio.addEventListener('ended', function() {
+											audio.currentTime = 0; // Mengatur waktu audio kembali ke awal
+											audio.play(); // Memulai ulang audio
+									});
+							}
+					});
+			});
+			</script>
+ </body>
+</html>
