@@ -237,7 +237,7 @@ res.status(500).json({ error: 'Internal server error' });
 }
 });
 
-router.get('/api/pinterest', async (req, res) => {
+router.get('/pinterest', async (req, res) => {
 const { query } = req.query;
 var Apikey = req.query.apikey
 if(!Apikey) return res.json(loghandler.notparam)
