@@ -14,7 +14,7 @@ import { snapsave } from './snapsave.js';
 import { TiktokDL } from "@tobyg74/tiktok-api-dl"
 import { remini } from './remini.js';
 import translate from '@iamtraction/google-translate';
-import { creator, pickRandom, nomorRandom, Lyrics, xnxxdl, pindl, scdl } from "./scraper.js"
+import { creator, pickRandom, nomorRandom, Lyrics, xnxxdl, pindl, scdl, pinterest } from "./scraper.js"
 import util from "util"
 const router = new Router();
 
@@ -215,7 +215,17 @@ res.status(500).json({ error: 'Internal server error' });
 }
 });
 
-
+router.get('/api/pinterest', async (req, res) => {
+const { query } = req.query;
+var Apikey = req.query.apikey
+if(!Apikey) return res.json(loghandler.notparam)
+if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
+if (!query) {
+return res.status(400).json({ error: 'Query parameter is required' });
+}
+const result = await pinterest(query);
+res.json(result);
+})
 
 router.get('/lirik', async (req, res) => {
 try {
