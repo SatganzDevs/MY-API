@@ -14,12 +14,34 @@ import { snapsave } from './snapsave.js';
 import { TiktokDL } from "@tobyg74/tiktok-api-dl"
 import { remini } from './remini.js';
 import translate from '@iamtraction/google-translate';
-import { creator, pickRandom, nomorRandom, Lyrics, xnxxdl, pindl, scdl, pinterest } from "./scraper.js"
+import { creator, pickRandom, nomorRandom, Lyrics, xnxxdl, pindl, scdl } from "./scraper.js"
 import util from "util"
 const router = new Router();
 
 
-
+function pinterest(querry){
+return new Promise(async(resolve,reject) => {
+axios.get('https://id.pinterest.com/search/pins/?autologin=true&q=' + querry, {
+headers: {
+"cookie" : "_auth=1; _b=\"datr=dgHRZPXP9znuQccJISuqXCVY;sb=iFbSZJl9p5Fft_D6ybT-p152;c_user=100027826357661;xs=32%3ADmebA0mr3Id53g%3A2%3A1691506316%3A-1%3A10820%3A%3AAcW9BndOiNTsz3YWfnUcIMhyeASVA-t1M9FSlSH4dg;fr=1c8f5S30ou827667r.AWUND2xkpi206cUhNYV9NcHJySw.BlbHJ0.77.AAA.0.0.BlbHJ0.AWXWoWLxjCc;wd=1280x598;presence=EDvF3EtimeF1703191540EuserFA21B27826357661A2EstateFDutF0CEchF_7bCC;usida=eyJ2ZXIiOjEsImlkIjoiQXM2MWIxdTExajNiOTgiLCJ0aW1lIjoxNzAzMTkxNjAyfQ%3D%3D;\"; _pinterest_sess=TWc9PSZkKzNNRGwyZ0VXY0kxMUk1YWJIV3QvaTlrVDJOdVh5M3lhamlhTGtRYzVncjhKUmhhNlpHc2g3cXg4aDRHVGRpdHVWMVMyZzJmMEx1dkdlVkZHVlhwaXVWQTRzdFJ3d1hoNVI5TUxIdUU4T3F0cndmSW14QmRoNUlsa3puTnl3YU1ZdGtFaXBhVEhlaGRUQTBaa21uSnIvRm5aM2Z3MVBaQWFCRVA0bWlMYnVoN0FsdU5kVTRDK1hMVFZpT3ZlQVE4SG5sbmMxSkhIbmloVitMTXdOa0JJM2lyckVEZkpUTk8vS1Z5RVNKTUZtenNQcnpMVFlKTW01WStQNFBnM21idGMwQU1HNENpdnhLSEpCT3k1OWI1aHpKUVFiakZXM1YyVWtjTDVNa1M5WG9lVlBjbGFzN0V0RjJub0U3TGFuaHFEeTFaaHp3VGhscGwySEo5eGdIb3RyZ2g0a1FtR21lSVgySWo1K25pVkFaZzhHUzNRaFNtMWR1UFF5Q3M1ZnJYclc4ZHJmdUpqSVFUWkpWZElFVEJBPT0mRVlhdU80K1pId1M1Ym1jTDVKc05zRVVwWnFNPQ==; _ir=0"
+}
+}).then(({ data }) => {
+const $ = cheerio.load(data)
+const result = [];
+const hasil = [];
+$('div > a').get().map(b => {
+const link = $(b).find('img').attr('src')
+result.push(link)
+});
+result.forEach(v => {
+if(v == undefined) return
+hasil.push(v.replace(/236/g,'736'))
+})
+hasil.shift();
+resolve(hasil)
+})
+})
+}
 /*
 * @Pesan Error
 */
