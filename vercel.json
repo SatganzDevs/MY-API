@@ -11,9 +11,5 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ],
-  "crons": [{
-    "path": "/api/online",
-    "schedule": "* 5 * * *"
-  }]
+  ]
 }
