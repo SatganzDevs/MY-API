@@ -210,10 +210,10 @@ res.status(401).json({ error: 'Unauthorized. Invalid API Key' });
 
 
 
-router.get('/online', async (req, res, next) => {
-axios.get("https://hn43zx-8080.csb.app/").then((res) => {
+router.get('/online', async (req, res) => {
+await axios.get("https://hn43zx-8080.csb.app/").then((res) => {
 console.log(res.data);
-});
+})
 res.json({success: 'Satzz Online!'})
 })
 
