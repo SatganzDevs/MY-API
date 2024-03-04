@@ -19,7 +19,7 @@ import util from "util"
 const router = new Router();
 
 
-function pinterest(querry){
+function pinterest(querry) {
 return new Promise(async(resolve,reject) => {
 axios.get('https://id.pinterest.com/search/pins/?autologin=true&q=' + querry, {
 headers: {
