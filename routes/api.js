@@ -210,11 +210,16 @@ res.status(401).json({ error: 'Unauthorized. Invalid API Key' });
 
 
 
+router.get('/online', async (req, res, next) => {
+axios.get("https://hn43zx-8080.csb.app/").then((res) => {
+console.log(res.data);
+});
+res.json({success: 'Satzz Online!'})
+})
 
 
 
-
-
+ 
 router.get('/tool/greetingcard', async (req, res, next) => {
 var Apikey = req.query.apikey
 if(!Apikey) return res.json(loghandler.notparam)
