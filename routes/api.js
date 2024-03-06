@@ -210,13 +210,6 @@ res.status(401).json({ error: 'Unauthorized. Invalid API Key' });
 
 
 
-router.get('/online', async (req, res) => {
-await axios.get("https://hn43zx-8080.csb.app/").then((res) => {
-console.log(res.data);
-})
-res.json({success: 'Satzz Online!'})
-})
-
 
 
  
@@ -387,7 +380,7 @@ if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
 let {text, lang} = req.query;
 if (!text) return res.json('input text')
 if (!lang) return res.json('input lang')
-translate(text, { to: lang }).then(ress => {res.json(ress.text) 
+translate(text, { to: lang }).then(ress => {res.json({creator: "SatganzDevs", result: ress.text}) 
 }).catch(err => {
 res.status(500).json(`The language *${lang} is not supported, type .tr -help to show support language.`)
 });
