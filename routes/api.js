@@ -14,7 +14,7 @@ import { creator, pickRandom, nomorRandom, Lyrics, xnxxdl, pindl, scdl } from ".
 import util from "util"
 const router = new Router();
 const client = new BingImageClient({
-token:"ps_l=0;ps_n=0;sb=tRHqZWPODDuSUWX5b7xcz4MX;wd=1280x598;datr=tRHqZfrwCv1lE8KuA3LtdKyC;dpr=1.5;locale=id_ID;c_user=100027826357661;xs=1%3A0yGKrFrENAJBCQ%3A2%3A1709838867%3A-1%3A10820%3A%3AAcVMJkredmfTZLqMbZbsRWxxR4S7AwCYSa45HLPJWQ;fr=1qiAYAItK2Pcv6HZP.AWUaG-1jZN33Ml6RN7dJ2jihUGs.Bl6hIg..AAA.0.0.Bl6hIg.AWV3IUR3hnE;presence=EDvF3EtimeF1709838989EuserFA21B27826357661A2EstateFDutF0CEchF_7bCC;usida=eyJ2ZXIiOjEsImlkIjoiQXM5enM5bnZwOWcydSIsInRpbWUiOjE3MDk4MzkwNjd9;|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36", 
+token:"EAAGNO4a7r2wBO8zweAanda5F84csd0bIGpIG2ZAgxjZCMgVkEuecwJHusiwJWWyfLS1OTglysDJgBxLJjOkhAZArlBKT3ZCwDE5uaEjzH0Rsox2P1NOj6Ra1hSOSyYgOe4r6fteZAxJPuHVmwnzcB8PxmSOZC98zsKn6lCkNyQbgSzJhfo9YI5HkoiAG1KcVuMxGDMIASBTwZDZD", 
 notify: false});
 
 function pinterest(querry) {
