@@ -2,22 +2,18 @@ import { Router } from "express";
 import axios from "axios"
 import cheerio from "cheerio"
 import fetch from "node-fetch"
-import fs from "fs"
-import zrapi from "zrapi"
-import FormData from "form-data"
-import qs from "qs"
-import request from "request"
-import path from "path"
-import { fileURLToPath } from "url";
 import { Wcard } from "wcard-gen";
 import { snapsave } from './snapsave.js';
+import { tiktokdls } from './scrape.js'
 import { TiktokDL } from "@tobyg74/tiktok-api-dl"
 import { remini } from './remini.js';
+import { BingImageClient } from 'bing-images'
+
 import translate from '@iamtraction/google-translate';
 import { creator, pickRandom, nomorRandom, Lyrics, xnxxdl, pindl, scdl } from "./scraper.js"
 import util from "util"
 const router = new Router();
-
+const client = new BingImageClient({token:"_U=1te1hlp4wBrGZSH45E4vY388ShBNjVnRShOrYmNrcV7Uq-yhBcJPAKFDS7Dl4JXLQdZH-pTfCwGVJD5mBZWsYu7lwZ1fvKY97QMcLvHj0HoFNe5BwIysB41TOMMcnKL57shtNeiAdzi3LpR_LoEnayf2MgRilP2PphKV9DnctoBPgc_IHKyy_mYQKKqlX7YokmWoXWtCWuCWzY8Yegk2BuA",notify: false});
 
 function pinterest(querry) {
 return new Promise(async(resolve,reject) => {
@@ -336,8 +332,12 @@ return res.status(400).json({ error: 'Missing URL parameter' });
 const result = await TiktokDL(url, {version: "v3"})
 res.json(result);
 } catch (error) {
-console.log(error);
-res.status(500).json({ error: 'Internal server error' });
+try {
+const resul = await tiktokdls(url)
+res.json(resul);
+} catch (error) {
+res.json.status(500).json({ error: 'Internal server error' });
+}
 }
 })
 
@@ -498,4 +498,41 @@ res.json({result})
 }) 
 
 
+
+router.get("/simsimi", async(req, res) => {
+var Apikey = req.query.apikey
+if(!Apikey) return res.json(loghandler.notparam)
+if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
+let { text, lang} = req.query
+if (!text) return res.json('masukan text')
+if (!lang) return res.json('masukan language')
+const options = new URLSearchParams();
+options.append('text', text);
+options.append('lc', lang);
+const response = await axios.post('https://api.simsimi.vn/v2/simtalk', options);
+let receipt = await response.data;
+res.json({
+status: true,
+creator: `${creator}`,
+result: receipt.message
+})
+})
+
+router.get("/bing-image", async(req, res) => {
+try {
+var Apikey = req.query.apikey
+if(!Apikey) return res.json(loghandler.notparam)
+if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
+let { prompt } = req.query
+if (!prompt) return res.json('masukan promptnya')
+const result = await client.getImages(prompt)
+res.json({
+status: true,
+creator: `${creator}`,
+result: result
+})
+} catch (err) {
+res.json.status(500).send(err)
+}
+})
 export default router;
