@@ -13,7 +13,7 @@ import translate from '@iamtraction/google-translate';
 import { creator, pickRandom, nomorRandom, Lyrics, xnxxdl, pindl, scdl } from "./scraper.js"
 import util from "util"
 const router = new Router();
-const client = new BingImageClient({token:"_U=1te1hlp4wBrGZSH45E4vY388ShBNjVnRShOrYmNrcV7Uq-yhBcJPAKFDS7Dl4JXLQdZH-pTfCwGVJD5mBZWsYu7lwZ1fvKY97QMcLvHj0HoFNe5BwIysB41TOMMcnKL57shtNeiAdzi3LpR_LoEnayf2MgRilP2PphKV9DnctoBPgc_IHKyy_mYQKKqlX7YokmWoXWtCWuCWzY8Yegk2BuA",notify: false});
+const client = new BingImageClient({token:"EAAGNO4a7r2wBO3sZCWmmnfnr3SZCxzqUSWQdLZBvivmBmAZCIf1leKgLQCZB0UfSssb8WwBQqbHi8ZAH0OYCnC7tuy91A9c0kkm3CUoz1VdcsvlqYj3lS4ZAFWjh5j0eqctPoF72N90nsZC0xAKUBmMGu9k3fIWKJgMZCEWmDa71GedidXKIDhsjkuAkbAZBoFtFZAVUZCUvUPMiAAZDZD",notify: false});
 
 function pinterest(querry) {
 return new Promise(async(resolve,reject) => {
