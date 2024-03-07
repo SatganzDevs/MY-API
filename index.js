@@ -30,26 +30,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-// fetching web codesanbox for make my bots online
-setInterval(() => {
-  axios.get("https://hn43zx-8080.csb.app/").then((res) => {
-    console.log(res.data);
-  });
-}, 10_000);
-
 // routes
 app.get("/", (req, res) => {
   res.render('index')
 });
-app.get("/downloader", (req, res) => {
-  res.render('dl')
-});
-app.get("/random-image", (req, res) => {
-  res.render('rimage')
-});
-app.get("/random-anime", (req, res) => {
-  res.render('ranime')
-});
+
 app.use("/api", apiRoutes)
 
 // starting the server
