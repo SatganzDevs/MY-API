@@ -532,7 +532,7 @@ creator: `${creator}`,
 result: result
 })
 } catch (err) {
-res.json.status(500).send(err)
+res.status(500).send('Internal Server Error');
 }
 })
 export default router;
