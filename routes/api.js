@@ -9,7 +9,7 @@ import { TiktokDL } from "@tobyg74/tiktok-api-dl"
 import { remini } from './remini.js';
 import ytdl from "ytdl-core";
 import { BingImageClient } from 'bing-images'
-import ffmpegPath from '@ffmpeg-installer/ffmpeg'.path;
+const ffmpegPath = (await import('@ffmpeg-installer/ffmpeg')).path;
 import translate from '@iamtraction/google-translate';
 
 
