@@ -7,6 +7,7 @@ import { snapsave } from './snapsave.js';
 import { tiktokdls } from './scrape.js'
 import { TiktokDL } from "@tobyg74/tiktok-api-dl"
 import { remini } from './remini.js';
+import ytdl from "ytdl-core";
 import { BingImageClient } from 'bing-images'
 
 import translate from '@iamtraction/google-translate';
