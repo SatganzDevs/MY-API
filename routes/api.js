@@ -345,26 +345,28 @@ res.status(500).json({ error: 'Internal server error' });
 }
 });
 router.get('/yta', async (req, res) => {
-try {
-const { url } = req.query;
-var Apikey = req.query.apikey
-if(!Apikey) return res.json(loghandler.notparam)
-if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
-if (!url) {
-return res.status(400).json({ error: 'Missing URL parameter' });
-}
-if (!ytdl.validateURL(url)) {
-return res.status(400).json({ error: 'Invalid YouTube URL' });
-}   
-const audioStream = await ytdl(url,  { filter: "audioonly" });
-const convertedAudio = ffmpegConvert(audioStream, ['-vn','-ac', '2','-b:a', '128k','-ar', '44100','-f', 'mp3'], 'mp4', 'mp3')
-res.setHeader('content-type', 'audio/mp3');
-convertedAudio.pipe(res);
-} catch (error) {
-console.error(error);
-res.status(500).json({ error: 'Internal server error' });
-}
+  try {
+    const { url } = req.query;
+    var Apikey = req.query.apikey
+    if (!Apikey) return res.json(loghandler.notparam)
+    if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
+    if (!url) {
+      return res.status(400).json({ error: 'Missing URL parameter' });
+    }
+    if (!ytdl.validateURL(url)) {
+      return res.status(400).json({ error: 'Invalid YouTube URL' });
+    }
+
+    const audioStream = ytdl(url, { filter: "audioonly" });
+
+    res.setHeader('content-type', 'audio/mp3');
+    audioStream.pipe(res);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
+
 router.get('/snapsave', async (req, res) => {
 try {
 const { url } = req.query;
