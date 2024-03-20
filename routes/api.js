@@ -9,9 +9,65 @@ import { TiktokDL } from "@tobyg74/tiktok-api-dl"
 import { remini } from './remini.js';
 import ytdl from "ytdl-core";
 import { BingImageClient } from 'bing-images'
-import ffmpeg from 'fluent-ffmpeg';
-
+import ffmpegPath from '@ffmpeg-installer/ffmpeg'.path;
 import translate from '@iamtraction/google-translate';
+
+
+
+/**
+ * Fungsi untuk melakukan konversi menggunakan ffmpeg
+ * @param {Buffer} buffer Buffer audio atau video yang akan dikonversi
+ * @param {string[]} args Argumen tambahan untuk ffmpeg
+ * @param {string} ext Ekstensi file asli
+ * @param {string} ext2 Ekstensi file output
+ * @returns {Promise<Buffer>} Buffer hasil konversi
+ */
+function ffmpegConvert(buffer, args = [], ext = '', ext2 = '') {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let tmpInputFile = path.join(__dirname, `input_${Date.now()}.${ext}`);
+      let tmpOutputFile = path.join(__dirname, `output_${Date.now()}.${ext2}`);
+      
+      // Menulis buffer ke file sementara
+      await fs.promises.writeFile(tmpInputFile, buffer);
+      
+      // Menjalankan ffmpeg
+      spawn(ffmpegPath, [
+        '-y',
+        '-i', tmpInputFile,
+        ...args,
+        tmpOutputFile
+      ])
+      .on('error', reject)
+      .on('close', async (code) => {
+        try {
+          // Menghapus file sementara input
+          await fs.promises.unlink(tmpInputFile);
+          
+          if (code !== 0) {
+            reject(new Error(`ffmpeg process exited with code ${code}`));
+            return;
+          }
+          
+          // Membaca hasil konversi dari file sementara output
+          const convertedBuffer = await fs.promises.readFile(tmpOutputFile);
+          
+          // Menghapus file sementara output
+          await fs.promises.unlink(tmpOutputFile);
+          
+          resolve(convertedBuffer);
+        } catch (e) {
+          reject(e);
+        }
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
+
+
+
 import { creator, pickRandom, nomorRandom, Lyrics, xnxxdl, pindl, scdl } from "./scraper.js"
 import util from "util"
 const router = new Router();
@@ -272,35 +328,42 @@ res.json(bro);
 console.log('[lyric-api]:', error.message, error.stack)
 }
 })
+router.get('/ytv', async (req, res) => {
+try {
+var Apikey = req.query.apikey
+if(!Apikey) return res.json(loghandler.notparam)
+if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
+const { url } = req.query;
+if (!url) { return res.status(400).json({ error: 'Missing URL parameter' }) }
+if (!ytdl.validateURL(url)) { return res.status(400).json({ error: 'Invalid YouTube URL' }) }
+const videoStream = await ytdl(url);
+res.setHeader('content-type', 'video/mp4');
+videoStream.pipe(res);
+} catch (error) {
+console.error(error);
+res.status(500).json({ error: 'Internal server error' });
+}
+});
 router.get('/yta', async (req, res) => {
-  try {
-    const { url } = req.query;
-    var Apikey = req.query.apikey
-    if (!Apikey) return res.json(loghandler.notparam)
-    if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
-    if (!url) {
-      return res.status(400).json({ error: 'Missing URL parameter' });
-    }
-    if (!ytdl.validateURL(url)) {
-      return res.status(400).json({ error: 'Invalid YouTube URL' });
-    }   
-
-    const audioStream = await ytdl(url, { filter: "audioonly" });
-
-    // Mengonversi audio stream ke format MP3
-    const ffmpegProcess = ffmpeg(audioStream)
-      .audioCodec('libmp3lame')
-      .format('mp3')
-      .on('error', err => {
-        console.error('Error converting audio:', err);
-        res.status(500).json({ error: 'Error converting audio' });
-      })
-      .pipe(res); // Mengirimkan file MP3 ke response HTTP
-
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+try {
+const { url } = req.query;
+var Apikey = req.query.apikey
+if(!Apikey) return res.json(loghandler.notparam)
+if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
+if (!url) {
+return res.status(400).json({ error: 'Missing URL parameter' });
+}
+if (!ytdl.validateURL(url)) {
+return res.status(400).json({ error: 'Invalid YouTube URL' });
+}   
+const audioStream = await ytdl(url,  { filter: "audioonly" });
+const convertedAudio = ffmpeg(audioStream, ['-vn','-ac', '2','-b:a', '128k','-ar', '44100','-f', 'mp3'], 'mp4', 'mp3')
+res.setHeader('content-type', 'audio/mp3');
+convertedAudio.pipe(res);
+} catch (error) {
+console.error(error);
+res.status(500).json({ error: 'Internal server error' });
+}
 });
 router.get('/snapsave', async (req, res) => {
 try {
