@@ -13,6 +13,7 @@
   "dependencies": {
     "@iamtraction/google-translate": "^2.0.1",
     "@tobyg74/tiktok-api-dl": "^1.0.13",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "axios": "^1.6.2",
     "bing-images": "^1.0.0",
     "cheerio": "^1.0.0-rc.12",
