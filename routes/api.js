@@ -357,7 +357,7 @@ if (!ytdl.validateURL(url)) {
 return res.status(400).json({ error: 'Invalid YouTube URL' });
 }   
 const audioStream = await ytdl(url,  { filter: "audioonly" });
-const convertedAudio = ffmpeg(audioStream, ['-vn','-ac', '2','-b:a', '128k','-ar', '44100','-f', 'mp3'], 'mp4', 'mp3')
+const convertedAudio = ffmpegConvert(audioStream, ['-vn','-ac', '2','-b:a', '128k','-ar', '44100','-f', 'mp3'], 'mp4', 'mp3')
 res.setHeader('content-type', 'audio/mp3');
 convertedAudio.pipe(res);
 } catch (error) {
