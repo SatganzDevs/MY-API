@@ -411,10 +411,8 @@ let {url} = req.query;
 const response = await axios.get(url, { responseType: 'arraybuffer' });
 const imageContent = response.data;
 const result = await remini(imageContent, 'enhance')
-const results = await remini(result, 'enhance')
-const results1 = await remini(results, 'enhance')
 res.setHeader('content-type', 'image/png');
-res.end(results1);
+res.end(result);
 } catch (error) {
 res.status(500).json({ error: error.message });
 }
