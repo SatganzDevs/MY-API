@@ -421,11 +421,12 @@ res.status(500).json({ error: error.message });
 }
 });
 
-router.post('/remini', validateApiKey, async (req, res) => {
+router.post('/remini', async (req, res) => {
 try {
 const { imageData, processingType } = req.body; 
 const result = await remini(imageData, processingType);
-res.send(result);
+res.setHeader('content-type', 'image/png');
+res.end(result);
 } catch (error) {
 res.status(500).send({ error: error.message });
 }
