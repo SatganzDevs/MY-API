@@ -407,15 +407,12 @@ res.json.status(500).json({ error: 'Internal server error' });
 
 router.get('/remini', async (req, res) => {
 try {
-const result = `Metode ini ditolak. Contoh penggunaan dengan curl: 
-curl -X POST https://api.satganzdevs.tech/api/remini \
--H "Content-Type: application/json" \
--H "x-api-key: YOUR_API_KEY" \
--d '{
-"imageData": "data_gambar_di_sini",
-"processingType": "enhance"
-}'`;
-res.status(405).json(result); // Status 405 menunjukkan method not allowed
+let {url} = query;
+const response = await axios.get(url, { responseType: 'arraybuffer' });
+const imageContent = response.data;
+const result = await remini(imageContent, 'enhance');
+res.setHeader('content-type', 'image/png');
+res.end(result);
 } catch (error) {
 res.status(500).json({ error: error.message });
 }
