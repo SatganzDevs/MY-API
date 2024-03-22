@@ -414,7 +414,7 @@ const result = await remini(imageContent, 'enhance')
 const results = await remini(result, 'enhance')
 const results1 = await remini(results, 'enhance')
 res.setHeader('content-type', 'image/png');
-res.end(result);
+res.end(results1);
 } catch (error) {
 res.status(500).json({ error: error.message });
 }
