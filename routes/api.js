@@ -407,7 +407,7 @@ res.json.status(500).json({ error: 'Internal server error' });
 
 router.get('/remini', async (req, res) => {
 try {
-let {url} = query;
+let {url} = req.query;
 const response = await axios.get(url, { responseType: 'arraybuffer' });
 const imageContent = response.data;
 const result = await remini(imageContent, 'enhance');
