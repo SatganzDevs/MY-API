@@ -4,7 +4,7 @@ import cheerio from "cheerio"
 import fetch from "node-fetch"
 import { Wcard } from "wcard-gen";
 import { snapsave } from './snapsave.js';
-import { tiktokdls } from './scrape.js'
+import { tiktokdls, getVidWm } from './scrape.js'
 import { TiktokDL } from "@tobyg74/tiktok-api-dl"
 import { remini } from './remini.js';
 import ytdl from "ytdl-core";
@@ -302,7 +302,15 @@ return res.status(400).json({ error: 'Query parameter is required' });
 const result = await pinterest(query);
 res.json(result);
 })
-
+router.get('/vt', async (req, res) => {
+try {
+let {url} = req.query
+let rf = await getVidWm(url)
+res.json(rf);
+} catch (error) {
+console.log('[lyric-api]:', error.message, error.stack)
+}
+})
 router.get('/lirik', async (req, res) => {
 try {
 const Buscar = require("lyria-npm")
