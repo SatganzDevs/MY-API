@@ -3,6 +3,40 @@ import cheerio from 'cheerio';
 
 
 
+export const getUrl= async(url) => {
+try {
+const res = await axios.get(url);
+const $ = cheerio.load(res.data);
+let hrefs = [];
+$('.overlay-s').each((index, element) => {
+const href = $(element).parent().attr('href');
+hrefs.push(href);
+});
+return hrefs;
+} catch (error) {
+console.error('Error getting token:', error);
+throw error;
+}
+}
+
+
+export const getVidWm = async(url) => {
+try {
+const hrefs = await getUrl(url);
+const randomIndex = Math.floor(Math.random() * hrefs.length);
+const randomVid = hrefs[randomIndex];
+const res = await axios.get(randomVid);
+const $ = cheerio.load(res.data);
+const href = $('video').attr('src');
+return {
+        status: true,
+        creator: 'satzz',
+        video: href
+    }
+} catch (error) {
+console.error('Error scraping:', error);
+}
+}
 
 export const tiktokdls = async(url) => {
     let host = 'https://www.tikwm.com/';
