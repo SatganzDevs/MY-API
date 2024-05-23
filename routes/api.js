@@ -1,15 +1,11 @@
 import { Router } from "express";
 import axios from "axios"
 import cheerio from "cheerio"
-import fetch from "node-fetch"
-import { Wcard } from "wcard-gen";
 import { snapsave } from './snapsave.js';
 import { tiktokdls, getVidWm } from './scrape.js'
 import { TiktokDL } from "@tobyg74/tiktok-api-dl"
 import { remini } from './remini.js';
-import ytdl from "ytdl-core";
 import JXR from 'jxr-canvas';
-import { BingImageClient } from 'bing-images'
 const ffmpegPath = (await import('@ffmpeg-installer/ffmpeg')).path;
 import translate from '@iamtraction/google-translate';
 
@@ -278,7 +274,7 @@ message: 'input parameter username guildname guildicon membercount avatar, conto
 }
 
 try {
-var image = await new JXR.Welcome()
+var image = new JXR.Welcome()
 .setUsername(username)
 .setGuildName(guildname)
 .setGuildIcon(guildicon)
@@ -311,7 +307,7 @@ message: 'input parameter username guildname guildicon membercount avatar, conto
 }
 
 try {
-var image = await new JXR.Goodbye()
+var image = new JXR.Goodbye()
 .setMemberCount(membercount)
 .setAvatar(avatar)
 .setUsername(username)
@@ -343,7 +339,7 @@ message: 'input parameter username'
 }
 
 try {
-var image = await new JXR.Gura()
+var image = new JXR.Gura()
 .setName(username)
 .toAttachment();
 
@@ -358,29 +354,6 @@ res.send(buffer);
 } catch (error) {
 console.error(error);
 res.status(500).json({ status: false, message: 'Error generating image' });
-}
-});
-
- 
-router.get('/tool/greetingcard', async (req, res, next) => {
-var Apikey = req.query.apikey
-if(!Apikey) return res.json(loghandler.notparam)
-if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
-try {
-
-const welcomecard = new Wcard()
-.setName(req.query.name) 
-.setAvatar(req.query.avatar) 
-.setTitle(req.query.title)
-.setColor(req.query.color) 
-.setBackground(req.query.background); 
-const card = await welcomecard.build();
-
-res.setHeader('content-type', 'image/png');
-res.end(card);
-} catch (error) {
-console.error(error);
-res.status(500).json({ error: 'Internal server error' });
 }
 });
 
@@ -429,44 +402,6 @@ res.json(bro);
 console.log('[lyric-api]:', error.message, error.stack)
 }
 })
-router.get('/ytv', async (req, res) => {
-try {
-var Apikey = req.query.apikey
-if(!Apikey) return res.json(loghandler.notparam)
-if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
-const { url } = req.query;
-if (!url) { return res.status(400).json({ error: 'Missing URL parameter' }) }
-if (!ytdl.validateURL(url)) { return res.status(400).json({ error: 'Invalid YouTube URL' }) }
-const videoStream = await ytdl(url);
-res.setHeader('content-type', 'video/mp4');
-videoStream.pipe(res);
-} catch (error) {
-console.error(error);
-res.status(500).json({ error: 'Internal server error' });
-}
-});
-router.get('/yta', async (req, res) => {
-  try {
-    const { url } = req.query;
-    var Apikey = req.query.apikey
-    if (!Apikey) return res.json(loghandler.notparam)
-    if (!listkey.includes(Apikey)) return res.json(loghandler.invalidKey)
-    if (!url) {
-      return res.status(400).json({ error: 'Missing URL parameter' });
-    }
-    if (!ytdl.validateURL(url)) {
-      return res.status(400).json({ error: 'Invalid YouTube URL' });
-    }
-
-    const audioStream = ytdl(url, { filter: "audioonly" });
-
-    res.setHeader('content-type', 'audio/mp3');
-    audioStream.pipe(res);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
 
 router.get('/snapsave', async (req, res) => {
 try {
