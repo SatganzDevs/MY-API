@@ -24,11 +24,7 @@
     "got": "^14.2.0",
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.2",
-    "request": "^2.88.2",
-    "underscore": "^1.13.6",
-    "wcard-gen": "^2.0.31",
-    "ytdl-core": "4.11.5",
-    "zrapi": "^0.0.7"
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.21"
